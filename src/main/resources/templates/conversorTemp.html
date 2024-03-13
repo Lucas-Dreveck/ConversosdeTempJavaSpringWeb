@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor</title>
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    width: 100%;
+    height: 75px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.math_result {
+    padding: 5px 10px;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.math_result:hover {
+    background-color: #f2f2f2;
+}
+
+.result {
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+footer a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+</style>
+<body>
+    <header>
+        <h1>Conversor de temperaturas</h1>
+    </header>
+    <section id="math">
+        <form class="calculator" id="form" th:action="@{/convert}" method="post">
+            <label for="tempValue">Digite a temperatura</label>
+            <input type="number" step="0.01" required name="tempValue" id="first_num">
+            <label for="operationRoot">Escolha o formato original</label>
+            <select name="operationRoot" required id="operation">
+                <option value="C">Celsius</option>
+                <option value="K">Kelvin</option>
+                <option value="F">Fahrenheit</option>
+            </select>
+            <label for="operationResult">Escolha o formato final</label>
+            <select name="operationResult" required id="operation">
+                <option value="C">Celsius</option>
+                <option value="K">Kelvin</option>
+                <option value="F">Fahrenheit</option>
+            </select>
+            <button class="math_result" type="submit">Calcular</button>
+        </form>
+        <div class="result" th:if="${result != null}">
+            <h2>Resultado</h2>
+            <p id="result" th:text="${result}">0</p>
+        </div>
+    </section>
+    <footer>
+        <p>Desenvolvido por <a target="_blank" href="https://www.github.com/Lucas-Dreveck">Lucas Dreveck</a></p>
+    </footer>
+</body>
+</html>
